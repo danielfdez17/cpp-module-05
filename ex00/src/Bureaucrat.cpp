@@ -1,0 +1,64 @@
+#include "Bureaucrat.hpp"
+#include "GradeTooHighException.hpp"
+#include "GradeTooLowException.hpp"
+
+const unsigned short int	HIGHEST_VALUE = 150;
+const unsigned short int	LOWEST_VALUE = 1;
+
+Bureaucrat::Bureaucrat() : name(__func__), grade(1)
+{
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat& copy) : name(__func__)
+{
+	if (this != &copy)
+	{
+		checkInRange(copy.grade);
+		grade = copy.grade;
+	}
+}
+
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& copy)
+{
+	if (this != &copy)
+	{
+		checkInRange(copy.grade);
+		grade = copy.grade;
+	}
+	return *this;
+}
+
+Bureaucrat::~Bureaucrat() {}
+
+Bureaucrat::Bureaucrat(const int grade) : name(__func__)
+{
+	checkInRange(grade);
+	this->grade = grade;
+}
+
+const std::string Bureaucrat::getName() const { return name; }
+
+unsigned short int Bureaucrat::getGrade() const { return grade; }
+
+void	Bureaucrat::checkInRange(const int grade) const
+{
+	if (grade < LOWEST_VALUE)
+		throw GradeTooHighException("Grade is greater than the maximum value\n");
+	if (grade > HIGHEST_VALUE)
+		throw GradeTooLowException("Grade is lower than the maximum value\n");
+}
+
+void	Bureaucrat::increment()
+{
+	checkInRange(--grade);
+}
+
+void	Bureaucrat::decrement()
+{
+	checkInRange(++grade);
+}
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
+{
+	return os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".\n";
+}
