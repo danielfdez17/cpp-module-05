@@ -15,7 +15,7 @@ public:
 	Bureaucrat(const Bureaucrat& copy);
 	Bureaucrat& operator=(const Bureaucrat& copy);
 	~Bureaucrat();
-	Bureaucrat(const int grade);
+	Bureaucrat(const std::string name, const int grade);
 	
 	const std::string	getName() const;
 	unsigned short int	getGrade() const;

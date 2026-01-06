@@ -11,8 +11,8 @@ private:
 	std::string message;
 public:
 	GradeTooLowException(const char* msg);
-	~GradeTooLowException();
-	const char *what();
+	virtual ~GradeTooLowException() throw();
+	const char *what() const throw();
 };
 
 

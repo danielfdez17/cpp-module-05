@@ -4,10 +4,9 @@
 
 GradeTooLowException::GradeTooLowException(const char* msg) : message(msg) {}
 
-GradeTooLowException::~GradeTooLowException() {}
+GradeTooLowException::~GradeTooLowException() throw() {}
 
-const char *GradeTooLowException::what()
+const char *GradeTooLowException::what() const throw()
 {
 	return message.c_str();
-	return "Grade is lower than the maximum value\n";
 }
