@@ -8,10 +8,10 @@
 class ShrubberyCreationForm : public AForm
 {
 private:
-	const std::string			name;
-	bool						isSigned;
-	const unsigned short int	signGrade;
-	const unsigned short int	executeGrade;
+	// const std::string			name;
+	// bool						isSigned;
+	// const unsigned short int	signGrade;
+	// const unsigned short int	executeGrade;
 public:
 	ShrubberyCreationForm();
 	ShrubberyCreationForm(const ShrubberyCreationForm& copy);
@@ -19,6 +19,7 @@ public:
 	virtual ~ShrubberyCreationForm();
 
 	ShrubberyCreationForm(const std::string name, const unsigned short int signGrade, const unsigned short int executeGrade);
+	void		beSigned(Bureaucrat bureaucrat);
 	void		execute(Bureaucrat const & executor) const;
 };
 

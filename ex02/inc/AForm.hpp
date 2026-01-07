@@ -10,30 +10,31 @@
 
 typedef class Bureaucrat Bureaucrat;
 
-class ShrubberyCreationForm
+class AForm
 {
-private:
+protected:
+	
 	const std::string			name;
 	bool						isSigned;
 	const unsigned short int	signGrade;
 	const unsigned short int	executeGrade;
 public:
-	ShrubberyCreationForm();
-	ShrubberyCreationForm(const ShrubberyCreationForm& copy);
-	ShrubberyCreationForm& operator=(const ShrubberyCreationForm& copy);
-	virtual ~ShrubberyCreationForm();
+	AForm();
+	AForm(const AForm& copy);
+	AForm& operator=(const AForm& copy);
+	virtual ~AForm();
 
-	ShrubberyCreationForm(const std::string name, const unsigned short int signGrade, const unsigned short int executeGrade);
+	AForm(const std::string name, const unsigned short int signGrade, const unsigned short int executeGrade);
 
 	std::string			getName() const;
 	bool				getIsSigned() const;
 	unsigned short int	getSignGrade() const;
 	unsigned short int	getExecuteGrade() const;
 
-	void				beSigned(Bureaucrat bureaucrat);
+	virtual void		beSigned(Bureaucrat bureaucrat) = 0;
 	virtual void		execute(Bureaucrat const & executor) const = 0;
 };
 
-std::ostream&	operator<<(std::ostream& os, const ShrubberyCreationForm& form);
+std::ostream&	operator<<(std::ostream& os, const AForm& form);
 
 #endif // __AFORM__

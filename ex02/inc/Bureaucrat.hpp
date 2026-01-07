@@ -8,6 +8,9 @@
 
 typedef class AForm AForm;
 
+const unsigned short int	HIGHEST_VALUE = 150;
+const unsigned short int	LOWEST_VALUE = 1;
+
 class Bureaucrat {
 private:
 	const std::string	name;

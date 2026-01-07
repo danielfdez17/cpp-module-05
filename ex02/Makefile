@@ -28,6 +28,8 @@ BUREAUCRAT_SRCS = 	Bureaucrat.cpp \
 					GradeTooHighException.cpp \
 					GradeTooLowException.cpp \
 					ShrubberyCreationForm.cpp \
+					RobotomyRequestForm.cpp \
+					PresidentialPardonForm.cpp \
 					main.cpp
 
 SRCS = $(BUREAUCRAT_SRCS)

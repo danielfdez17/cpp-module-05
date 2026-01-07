@@ -1,5 +1,5 @@
 #include "colors.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 int main()
 {
@@ -55,16 +55,16 @@ int main()
 	// }
 
 	{
-		AForm f1("Form1", 50, 100);
-		Bureaucrat b1("Eve", 75);
-		std::cout << f1;
-		std::cout << b1;
-		b1.signForm(f1);
-		std::cout << f1;
-		Bureaucrat b2("Frank", 30);
-		std::cout << b2;
-		b2.signForm(f1);
-		std::cout << f1;
+		// AForm f1("Form1", 50, 100);
+		// Bureaucrat b1("Eve", 75);
+		// std::cout << f1;
+		// std::cout << b1;
+		// b1.signForm(f1);
+		// std::cout << f1;
+		// Bureaucrat b2("Frank", 30);
+		// std::cout << b2;
+		// b2.signForm(f1);
+		// std::cout << f1;
 	}
 	
 	return 0;

@@ -3,9 +3,6 @@
 #include "GradeTooLowException.hpp"
 #include "colors.hpp"
 
-const unsigned short int	HIGHEST_VALUE = 150;
-const unsigned short int	LOWEST_VALUE = 1;
-
 Bureaucrat::Bureaucrat() : name(__func__), grade(1)
 {
 }

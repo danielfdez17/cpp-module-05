@@ -31,23 +31,16 @@ AForm::AForm(const std::string name, const unsigned short int signGrade, const u
 {
 	std::cout << YELLOW << __func__ << " called with name " << name
 		<< ", sign grade " << signGrade << ", execute grade " << executeGrade << "\n" RESET;
-	if (signGrade < 1 || executeGrade < 1)
+	if (signGrade < LOWEST_VALUE || executeGrade < LOWEST_VALUE)
 		throw GradeTooHighException("AForm grade is lower than the highest value\n");
-	if (signGrade > 150 || executeGrade > 150)
+	if (signGrade > HIGHEST_VALUE || executeGrade > HIGHEST_VALUE)
 		throw GradeTooLowException("AForm grade is higher than the lowest value\n");
 }
 
-std::string	AForm::getName() const { return name; }
-bool	AForm::getIsSigned() const { return isSigned; }
+std::string			AForm::getName() const { return name; }
+bool				AForm::getIsSigned() const { return isSigned; }
 unsigned short int	AForm::getSignGrade() const { return signGrade; }
 unsigned short int	AForm::getExecuteGrade() const { return executeGrade; }
-
-void	AForm::beSigned(Bureaucrat bureaucrat)
-{
-	if (bureaucrat.getGrade() > signGrade)
-		throw GradeTooLowException("Bureaucrat grade too low to sign the form\n");
-	this->isSigned = true;
-}
 
 std::ostream& operator<<(std::ostream& os, const AForm& form)
 {
