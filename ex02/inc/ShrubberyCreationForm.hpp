@@ -8,10 +8,10 @@
 class ShrubberyCreationForm : public AForm
 {
 private:
-	// const std::string			name;
-	// bool						isSigned;
-	// const unsigned short int	signGrade;
-	// const unsigned short int	executeGrade;
+	const std::string			name;
+	bool						isSigned;
+	const unsigned short int	signGrade;
+	const unsigned short int	executeGrade;
 public:
 	ShrubberyCreationForm();
 	ShrubberyCreationForm(const ShrubberyCreationForm& copy);

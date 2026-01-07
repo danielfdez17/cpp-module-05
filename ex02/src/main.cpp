@@ -1,5 +1,7 @@
 #include "colors.hpp"
-#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main()
 {
@@ -54,17 +56,61 @@ int main()
 	// 	}
 	// }
 
-	{
-		// AForm f1("Form1", 50, 100);
-		// Bureaucrat b1("Eve", 75);
-		// std::cout << f1;
-		// std::cout << b1;
-		// b1.signForm(f1);
-		// std::cout << f1;
-		// Bureaucrat b2("Frank", 30);
-		// std::cout << b2;
-		// b2.signForm(f1);
-		// std::cout << f1;
+	try {
+		ShrubberyCreationForm s1("Shrubbery", 50, 100);
+		Bureaucrat b1("Eve", 75);
+		std::cout << s1;
+		std::cout << b1;
+		b1.signForm(s1);
+		std::cout << s1;
+		Bureaucrat b2("Frank", 30);
+		std::cout << b2;
+		b2.signForm(s1);
+		std::cout << s1;
+		b1.executeForm(s1);
+		std::cout << s1;
+		b2.executeForm(s1);
+		std::cout << s1;
+	} catch (const std::exception& e) {
+		std::cerr << RED << e.what() << "\n" RESET;
+	}
+
+	try {
+		RobotomyRequestForm r1("Robotomy", 50, 100);
+		Bureaucrat b1("Eve", 75);
+		std::cout << r1;
+		std::cout << b1;
+		b1.signForm(r1);
+		std::cout << r1;
+		Bureaucrat b2("Frank", 30);
+		std::cout << b2;
+		b2.signForm(r1);
+		std::cout << r1;
+		b1.executeForm(r1);
+		std::cout << r1;
+		b2.executeForm(r1);
+		std::cout << r1;
+	} catch (const std::exception& e) {
+		std::cerr << RED << e.what() << "\n" RESET;
+	}
+
+	try {
+		PresidentialPardonForm p1("Presidential", 1, 1);
+		Bureaucrat b1("Eve", 75);
+		std::cout << p1;
+		std::cout << b1;
+		b1.signForm(p1);
+		std::cout << p1;
+		Bureaucrat b2("Frank", 30);
+		std::cout << b2;
+		b2.signForm(p1);
+		std::cout << p1;
+		b1.executeForm(p1);
+		std::cout << p1;
+		b2.executeForm(p1);
+		std::cout << p1;
+	} catch (const std::exception& e) {
+		std::cerr << RED << e.what() << "\n" RESET;
 	}
 	
 	return 0;

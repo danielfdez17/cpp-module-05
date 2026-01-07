@@ -3,11 +3,11 @@
 const unsigned short int REQUIRED_SIGN = 72;
 const unsigned short int REQUIRED_EXEC = 45;
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm()
+RobotomyRequestForm::RobotomyRequestForm() : AForm(), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
 {
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm&copy) : AForm(copy)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm&copy) : AForm(copy), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
 {
 	if (this != &copy)
 	{
@@ -28,7 +28,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 {
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string name, const unsigned short int signGrade, const unsigned short int executeGrade) : AForm(name, signGrade, executeGrade)
+RobotomyRequestForm::RobotomyRequestForm(const std::string name, const unsigned short int signGrade, const unsigned short int executeGrade) : AForm(name, signGrade, executeGrade), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
 {
 	std::cout << YELLOW << __func__ << " called with name " << name
 		<< ", sign grade " << signGrade << ", execute grade " << executeGrade << "\n" RESET;
@@ -48,6 +48,8 @@ void	RobotomyRequestForm::beSigned(Bureaucrat bureaucrat)
 void	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
 	std::cout << RED "Unimplemented method\n" RESET;
+	if (executeGrade > REQUIRED_EXEC)
+		throw GradeTooLowException("RobotomyRequestForm execution grade is not high enough\n");
 	(void)executor;
 	/**
 	 * Required grades: sign 72, exec 45

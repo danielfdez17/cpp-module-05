@@ -3,12 +3,11 @@
 const unsigned short int REQUIRED_SIGN = 25;
 const unsigned short int REQUIRED_EXEC = 5;
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm()
-// , signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
+PresidentialPardonForm::PresidentialPardonForm() : AForm(), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
 {
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm&copy) : AForm(copy)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm&copy) : AForm(copy), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
 {
 	if (this != &copy)
 	{
@@ -29,7 +28,7 @@ PresidentialPardonForm::~PresidentialPardonForm()
 {
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string name, const unsigned short int signGrade, const unsigned short int executeGrade) : AForm(name, signGrade, executeGrade)
+PresidentialPardonForm::PresidentialPardonForm(const std::string name, const unsigned short int signGrade, const unsigned short int executeGrade) : AForm(name, signGrade, executeGrade), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
 {
 	std::cout << YELLOW << __func__ << " called with name " << name
 		<< ", sign grade " << signGrade << ", execute grade " << executeGrade << "\n" RESET;

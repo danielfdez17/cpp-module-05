@@ -3,11 +3,11 @@
 const unsigned short int REQUIRED_SIGN = 145;
 const unsigned short int REQUIRED_EXEC = 137;
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm()
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm(), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
 {
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm&copy) : AForm(copy)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm&copy) : AForm(copy), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
 {
 	if (this != &copy)
 	{
@@ -28,7 +28,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string name, const unsigned short int signGrade, const unsigned short int executeGrade) : AForm(name, signGrade, executeGrade)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string name, const unsigned short int signGrade, const unsigned short int executeGrade) : AForm(name, signGrade, executeGrade), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
 {
 	std::cout << YELLOW << __func__ << " called with name " << name
 		<< ", sign grade " << signGrade << ", execute grade " << executeGrade << "\n" RESET;
@@ -49,6 +49,8 @@ void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
 	std::cout << RED "Unimplemented method\n" RESET;
 	(void)executor;
+	if (executeGrade > REQUIRED_EXEC)
+		throw GradeTooLowException("ShrubberyCreationForm execution grade is not high enough\n");
 	// todo: creates a executor.getName()_shrubbery file to write ASCII trees inside it.
 	// executor.getName();
 }

@@ -12,8 +12,7 @@ typedef class Bureaucrat Bureaucrat;
 
 class AForm
 {
-protected:
-	
+private:
 	const std::string			name;
 	bool						isSigned;
 	const unsigned short int	signGrade;

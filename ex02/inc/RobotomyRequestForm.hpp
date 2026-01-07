@@ -8,10 +8,10 @@
 class RobotomyRequestForm : public AForm
 {
 private:
-	// const std::string			name;
-	// bool						isSigned;
-	// const unsigned short int	signGrade;
-	// const unsigned short int	executeGrade;
+	const std::string			name;
+	bool						isSigned;
+	const unsigned short int	signGrade;
+	const unsigned short int	executeGrade;
 public:
 	RobotomyRequestForm();
 	RobotomyRequestForm(const RobotomyRequestForm& copy);
