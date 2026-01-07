@@ -60,19 +60,30 @@ void	Bureaucrat::decrement()
 	checkInRange(++grade);
 }
 
-
 void	Bureaucrat::signForm(AForm &form)
 {
 	try
 	{
-		form.beSigned(*this);
+		form .beSigned(*this);
 		std::cout << GREEN << name << " signed " << form.getName() << "\n" RESET;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << RED << name << " couldn't sign " << form.getName() << " because " << e.what() << "\n" RESET;
 	}
-	
+}
+
+void	Bureaucrat::executeForm(AForm &form)
+{
+	try
+	{
+		form .execute(*this);
+		std::cout << GREEN << name << " executed " << form.getName() << "\n" RESET;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED << name << " couldn't execute " << form.getName() << " because " << e.what() << "\n" RESET;
+	}
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)

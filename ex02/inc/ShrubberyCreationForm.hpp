@@ -1,16 +1,11 @@
 #pragma once
-#ifndef __AFORM__
-#define __AFORM__
+#ifndef __SHRUBBERY_CREATION_FORM__
+#define __SHRUBBERY_CREATION_FORM__
 
 #include <string>
-#include "colors.hpp"
-#include "GradeTooHighException.hpp"
-#include "GradeTooLowException.hpp"
-#include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
-typedef class Bureaucrat Bureaucrat;
-
-class ShrubberyCreationForm
+class ShrubberyCreationForm : public AForm
 {
 private:
 	const std::string			name;
@@ -24,16 +19,9 @@ public:
 	virtual ~ShrubberyCreationForm();
 
 	ShrubberyCreationForm(const std::string name, const unsigned short int signGrade, const unsigned short int executeGrade);
-
-	std::string			getName() const;
-	bool				getIsSigned() const;
-	unsigned short int	getSignGrade() const;
-	unsigned short int	getExecuteGrade() const;
-
-	void				beSigned(Bureaucrat bureaucrat);
-	virtual void		execute(Bureaucrat const & executor) const = 0;
+	void		execute(Bureaucrat const & executor) const;
 };
 
 std::ostream&	operator<<(std::ostream& os, const ShrubberyCreationForm& form);
 
-#endif // __AFORM__
+#endif // __SHRUBBERY_CREATION_FORM__

@@ -1,7 +1,4 @@
-#include "colors.hpp"
 #include "AForm.hpp"
-#include "GradeTooHighException.hpp"
-#include "GradeTooLowException.hpp"
 #include <iostream>
 
 AForm::AForm() : name(__func__), isSigned(false), signGrade(1), executeGrade(1)

@@ -4,7 +4,7 @@
 
 #include <string>
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
 typedef class AForm AForm;
 
@@ -29,6 +29,7 @@ public:
 	void				decrement();
 
 	void				signForm(AForm &form);
+	void				executeForm(AForm &form);
 	
 };
 

@@ -24,9 +24,10 @@ OBJ_DIR = ./obj/
 # * Sources files
 BUREAUCRAT_DIR = ./src/
 BUREAUCRAT_SRCS = 	Bureaucrat.cpp \
-					Form.cpp \
+					AForm.cpp \
 					GradeTooHighException.cpp \
 					GradeTooLowException.cpp \
+					ShrubberyCreationForm.cpp \
 					main.cpp
 
 SRCS = $(BUREAUCRAT_SRCS)
