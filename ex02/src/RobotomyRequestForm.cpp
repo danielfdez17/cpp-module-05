@@ -48,7 +48,6 @@ void	RobotomyRequestForm::beSigned(Bureaucrat bureaucrat)
 
 void	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
-	std::cout << RED "Unimplemented method\n" RESET;
 	if (executeGrade > REQUIRED_EXEC)
 		throw GradeTooLowException("RobotomyRequestForm execution grade is not high enough\n");
 	(void)executor;
@@ -56,7 +55,7 @@ void	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 	if (std::rand() % 2 == 0)
 		std::cout << GREEN << executor.getName() << " has been successfully robotomized!\n" RESET;
 	else
-		std::cout << GREEN << executor.getName() << " has been unsuccessfully robotomized!\n" RESET;
+		std::cout << RED << executor.getName() << " has been unsuccessfully robotomized!\n" RESET;
 	
 	
 	/**
