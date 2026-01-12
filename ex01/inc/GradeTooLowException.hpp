@@ -10,7 +10,8 @@ class GradeTooLowException : public std::exception
 private:
 	std::string message;
 public:
-	GradeTooLowException(const char* msg);
+	GradeTooLowException(const char *msg);
+	GradeTooLowException(const int grade, const unsigned short int limit);
 	virtual ~GradeTooLowException() throw();
 	const char *what() const throw();
 };
