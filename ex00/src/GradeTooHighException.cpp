@@ -3,6 +3,8 @@
 #include <string>
 #include <sstream>
 
+GradeTooHighException::GradeTooHighException(const char *msg) : message(msg) {}
+
 GradeTooHighException::GradeTooHighException(const int grade, const unsigned short int limit)
 {
 	std::stringstream ss1;
