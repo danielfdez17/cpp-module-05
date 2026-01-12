@@ -53,35 +53,33 @@ void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 	(void)executor;
 	if (executeGrade > REQUIRED_EXEC)
 		throw GradeTooLowException("ShrubberyCreationForm execution grade is not high enough\n");
-	// todo: creates a executor.getName()_shrubbery file to write ASCII trees inside it.
-	// executor.getName();
 	std::fstream outfile;
-	std::string content = R"EOF(      *             ,
-						  _/^\_
-						 <     >
-		*                 /.-.\         *
-				 *        `/&\`                   *
-						 ,@.*;@,
-						/_o.I %_\    *
-		   *           (`'--:o(_@;
-					  /`;--.,__ `')             *
-					 ;@`o % O,*`'`&\
-			   *    (`'--)_@ ;o %'()\      *
-					/`;--._`''--._O'@;
-				   /&*,()~o`;-.,_ `""`)
-		*          /`,@ ;+& () o*`;-';
-				  (`""--.,_0 +% @' &()
-				  /-.,_    ``''--....-'`)  *
-			 *    /@%;o`:;'--,.__   __.'
-				 ;*,&(); @ % &^;~`"`o;@();         *
-				 /(); o^~; & ().o@*&`;&%O
-		   jgs   `"="==""==,,,.,="=="==="`
-			  __.----.(\-''#####---...___...-----._
-			'`         \)_`"""""`
-					.--' ')
-				  o(  )_-\
-					`"""` `
-	)EOF";
+	std::string content =
+	"      *             ,\n"
+	"                          _/^\\_\n"
+	"                         <     >\n"
+	"        *                 /.-.\\         *\n"
+	"                 *        `/&\\`                   *\n"
+	"                         ,@.*;@,\n"
+	"                        /_o.I %_\\    *\n"
+	"           *           (`'--:o(_@;\n"
+	"                      /`;--.,__ `')             *\n"
+	"                     ;@`o % O,*`'`&\\\n"
+	"               *    (`'--)_@ ;o %'()\\      *\n"
+	"                    /`;--._`''--._O'@;\n"
+	"                   /&*,()~o`;-.,_ `\"\"`)\n"
+	"        *          /`,@ ;+& () o*`;-';\n"
+	"                  (`\"\"--.,_0 +% @' &()\n"
+	"                  /-.,_    ``''--....-'`)  *\n"
+	"             *    /@%;o`:;'--,.__   __.'\n"
+	"                 ;*,&(); @ % &^;~`\"`o;@();         *\n"
+	"                 /(); o^~; & ().o@*&`;&%O\n"
+	"           jgs   `\"=\"==\"\"==,,,.,=\"==\"==\"`\n"
+	"              __.----.(\\-''#####---...___...-----._\n"
+	"            '`         \\)_`\"\"\"\"`\"\n"
+	"                    .--' ')\n"
+	"                  o(  )_-\\\n"
+	"                    `\"\"\"` `\n";
 	outfile.open(& (executor.getName() + "_shrubbery")[0], std::fstream::out);
 	
 	outfile << content;
