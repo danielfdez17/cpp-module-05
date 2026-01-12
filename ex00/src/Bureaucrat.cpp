@@ -45,9 +45,9 @@ unsigned short int Bureaucrat::getGrade() const { return grade; }
 void	Bureaucrat::checkInRange(const int grade) const
 {
 	if (grade < LOWEST_VALUE)
-		throw GradeTooHighException("Grade is lower than the highest value\n");
+		throw GradeTooHighException(grade, LOWEST_VALUE);
 	if (grade > HIGHEST_VALUE)
-		throw GradeTooLowException("Grade is higher than the lowest value\n");
+		throw GradeTooLowException(grade, HIGHEST_VALUE);
 }
 
 void	Bureaucrat::increment()
@@ -62,5 +62,5 @@ void	Bureaucrat::decrement()
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
 {
-	return os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".\n";
+	return os << BLUE << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".\n" RESET;
 }
