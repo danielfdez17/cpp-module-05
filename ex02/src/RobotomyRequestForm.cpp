@@ -1,4 +1,5 @@
 #include "RobotomyRequestForm.hpp"
+#include <random>
 
 const unsigned short int REQUIRED_SIGN = 72;
 const unsigned short int REQUIRED_EXEC = 45;
@@ -51,6 +52,15 @@ void	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 	if (executeGrade > REQUIRED_EXEC)
 		throw GradeTooLowException("RobotomyRequestForm execution grade is not high enough\n");
 	(void)executor;
+	std::cout << YELLOW "Making some drilling noises...\n" RESET;
+	std::default_random_engine generator;
+	std::uniform_int_distribution<int> distribution(0, 1);
+	if (distribution(generator) % 2 == 0)
+		std::cout << GREEN << executor.getName() << " has been successfully robotomized!\n" RESET;
+	else
+		std::cout << GREEN << executor.getName() << " has been unsuccessfully robotomized!\n" RESET;
+	
+	
 	/**
 	 * Required grades: sign 72, exec 45
 		Makes some drilling noises, then informs that <target> has been robotomized
