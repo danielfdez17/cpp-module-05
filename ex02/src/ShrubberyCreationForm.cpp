@@ -1,5 +1,7 @@
 #include "ShrubberyCreationForm.hpp"
 
+#include <fstream>
+
 const unsigned short int REQUIRED_SIGN = 145;
 const unsigned short int REQUIRED_EXEC = 137;
 
@@ -53,6 +55,37 @@ void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 		throw GradeTooLowException("ShrubberyCreationForm execution grade is not high enough\n");
 	// todo: creates a executor.getName()_shrubbery file to write ASCII trees inside it.
 	// executor.getName();
+	std::fstream outfile;
+	std::string content = R"EOF(      *             ,
+						  _/^\_
+						 <     >
+		*                 /.-.\         *
+				 *        `/&\`                   *
+						 ,@.*;@,
+						/_o.I %_\    *
+		   *           (`'--:o(_@;
+					  /`;--.,__ `')             *
+					 ;@`o % O,*`'`&\
+			   *    (`'--)_@ ;o %'()\      *
+					/`;--._`''--._O'@;
+				   /&*,()~o`;-.,_ `""`)
+		*          /`,@ ;+& () o*`;-';
+				  (`""--.,_0 +% @' &()
+				  /-.,_    ``''--....-'`)  *
+			 *    /@%;o`:;'--,.__   __.'
+				 ;*,&(); @ % &^;~`"`o;@();         *
+				 /(); o^~; & ().o@*&`;&%O
+		   jgs   `"="==""==,,,.,="=="==="`
+			  __.----.(\-''#####---...___...-----._
+			'`         \)_`"""""`
+					.--' ')
+				  o(  )_-\
+					`"""` `
+	)EOF";
+	outfile.open(& (executor.getName() + "_shrubbery")[0], std::fstream::out);
+	
+	outfile << content;
+	outfile.close();
 }
 
 std::ostream& operator<<(std::ostream& os, const ShrubberyCreationForm& form)
