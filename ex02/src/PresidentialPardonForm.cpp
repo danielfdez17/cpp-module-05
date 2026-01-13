@@ -28,7 +28,7 @@ PresidentialPardonForm::~PresidentialPardonForm()
 {
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string name, const unsigned short int signGrade, const unsigned short int executeGrade) : AForm(name, signGrade, executeGrade), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
+PresidentialPardonForm::PresidentialPardonForm(const std::string name, const unsigned short int signGrade, const unsigned short int executeGrade) : AForm(name, signGrade, executeGrade), name(name), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
 {
 	std::cout << YELLOW << __func__ << " called with name " << name
 		<< ", sign grade " << signGrade << ", execute grade " << executeGrade << "\n" RESET;
@@ -42,7 +42,10 @@ void	PresidentialPardonForm::beSigned(Bureaucrat bureaucrat)
 {
 	if (bureaucrat.getGrade() > signGrade)
 		throw GradeTooLowException("Bureaucrat grade too low to sign the form\n");
+	if (this->isSigned)
+		std::cout << YELLOW "PresidentialPardonForm '" << name << "' has already been signed!!!\n" RESET;
 	this->isSigned = true;
+	std::cout << GREEN "PresidentialPardonForm '" << name << "' has been signed successfully\n" RESET;
 }
 
 void	PresidentialPardonForm::execute(Bureaucrat const &executor) const
@@ -54,6 +57,6 @@ void	PresidentialPardonForm::execute(Bureaucrat const &executor) const
 
 std::ostream& operator<<(std::ostream& os, const PresidentialPardonForm& form)
 {
-	return os << "PresidentialPardonForm " << form.getName() << ", is signed: " << (form.getIsSigned() ? "true" : "false")
-		<< ", sign grade: " << form.getSignGrade() << ", execute grade: " << form.getExecuteGrade() << "\n";
+	return os << BLUE << "PresidentialPardonForm " << form.getName() << ", is signed: " << (form.getIsSigned() ? "true" : "false")
+		<< ", sign grade: " << form.getSignGrade() << ", execute grade: " << form.getExecuteGrade() << "\n" RESET;
 }
