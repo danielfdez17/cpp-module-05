@@ -67,6 +67,6 @@ run: all
 	clear
 	./$(NAME)
 
-.PHONY: all obj clean fclean re
+.PHONY: all obj clean fclean re run
 
 .DEFAULT_GOAL: all

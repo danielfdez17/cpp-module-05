@@ -5,6 +5,8 @@
 #include "PresidentialPardonForm.hpp"
 #include "colors.hpp"
 
+const unsigned short int MAX_FORMS = 3;
+
 const std::string			ROBOTOMY_FORM = "robotomy request";
 const unsigned short int	ROBOTOMY_REQUIRED_SIGN = 72;
 const unsigned short int	ROBOTOMY_REQUIRED_EXEC = 45;
@@ -17,15 +19,7 @@ const std::string			SHRUBBERY_FORM = "shrubbery creation";
 const unsigned short int	SHRUBBERY_REQUIRED_SIGN = 145;
 const unsigned short int	SHRUBBERY_REQUIRED_EXEC = 137;
 
-Intern::Intern()
-{
-	forms[0].key = ROBOTOMY_FORM;
-	forms[0].value = new RobotomyRequestForm();
-	forms[1].key = PRESIDENTIAL_FORM;
-	forms[1].value = new PresidentialPardonForm();
-	forms[2].key = SHRUBBERY_FORM;
-	forms[2].value = new ShrubberyCreationForm();
-}
+Intern::Intern() {}
 
 Intern::Intern(const Intern &copy)
 {
@@ -40,36 +34,41 @@ Intern	Intern::operator=(const Intern &copy)
 	return *this;
 }
 
-Intern::~Intern()
-{
-	delete forms[0].value;
-	delete forms[1].value;
-	delete forms[2].value;
-}
+Intern::~Intern() {}
 
 AForm	*Intern::makeForm(std::string formName, std::string targetName)
 {
-	AForm *form = NULL;
-	// for (unsigned short int i = 0; i < MAX_FORMS; i++)
-	// {
-	// 	if (formName == forms[i].key)
-	// 	{
-	// 		form = new 
-	// 	}
-	// }
-	if (formName == "robotomy request")
-		form = new RobotomyRequestForm(targetName, ROBOTOMY_REQUIRED_SIGN, ROBOTOMY_REQUIRED_EXEC);
-	else if (formName == "presidential pardon")
-		form = new PresidentialPardonForm(targetName, PRESIDENTIAL_REQUIRED_SIGN, PRESIDENTIAL_REQUIRED_EXEC);
-	else if (formName == "shrubbery creation")
-		form = new ShrubberyCreationForm(targetName, SHRUBBERY_REQUIRED_SIGN, SHRUBBERY_REQUIRED_EXEC);
-	else
+	AForm	*form = NULL;
+	int		index = -1;
+	const	std::string names[MAX_FORMS] = {
+		ROBOTOMY_FORM,
+		PRESIDENTIAL_FORM,
+		SHRUBBERY_FORM
+	};
+
+	for (unsigned short int i = 0; i < MAX_FORMS; i++)
 	{
+		if (formName == names[i])
+		{
+			index = i;
+			break;
+		}
+	}
+	switch (index)
+	{
+	case 0:
+		form = new RobotomyRequestForm(targetName, ROBOTOMY_REQUIRED_SIGN, ROBOTOMY_REQUIRED_EXEC);
+		break;
+	case 1:
+		form = new PresidentialPardonForm(targetName, PRESIDENTIAL_REQUIRED_SIGN, PRESIDENTIAL_REQUIRED_EXEC);
+		break;
+	case 2:
+		form = new ShrubberyCreationForm(targetName, SHRUBBERY_REQUIRED_SIGN, SHRUBBERY_REQUIRED_EXEC);
+		break;
+	default:
 		std::cout << RED "'" << formName << "' does not exist!!!\n" RESET;
 		return NULL;
 	}
-	//? 1 enum and loop over the enum values till formName is found? 
-	//? 2 map with struct {key, value}
-	std::cout << YELLOW "Intern creates " << form << RESET;
+	std::cout << GREEN "Intern creates " << *form << RESET;
 	return form;
 }

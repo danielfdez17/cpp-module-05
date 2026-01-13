@@ -5,17 +5,7 @@
 #include "AForm.hpp"
 #include <string>
 
-typedef struct t_map
-{
-	std::string	key;
-	AForm		*value;
-};
-
-const unsigned short int MAX_FORMS = 3;
-
 class Intern {
-private:
-	t_map forms[MAX_FORMS];
 public:
 	Intern();
 	Intern(const Intern &copy);

@@ -2,62 +2,63 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int main()
 {
-	// {
-	// 	try
-	// 	{
-	// 		Bureaucrat b("Juan", 155);
-	// 		std::cout << b;
-	// 	}
-	// 	catch(const std::exception& e)
-	// 	{
-	// 		std::cerr << RED << e.what() << "\n" RESET;
-	// 	}
-	// 	try
-	// 	{
-	// 		Bureaucrat b("Alberto", -155);
-	// 		std::cout << b;
-	// 	}
-	// 	catch(const std::exception& e)
-	// 	{
-	// 		std::cerr << RED << e.what() << "\n" RESET;
-	// 	}
-	// 	try
-	// 	{
-	// 		Bureaucrat b("Carlos", 150);
-	// 		std::cout << b;
-	// 		b.increment();
-	// 		std::cout << b;
-	// 		b.decrement();
-	// 		std::cout << b;
-	// 		b.decrement();
-	// 		std::cout << b;
-	// 	}
-	// 	catch(const std::exception& e)
-	// 	{
-	// 		std::cerr << RED << e.what() << "\n" RESET;
-	// 	}
-	// 	try
-	// 	{
-	// 		Bureaucrat b("David", 1);
-	// 		std::cout << b;
-	// 		b.decrement();
-	// 		std::cout << b;
-	// 		b.increment();
-	// 		std::cout << b;
-	// 		b.increment();
-	// 		std::cout << b;
-	// 	}
-	// 	catch(const std::exception& e)
-	// 	{
-	// 		std::cerr << RED << e.what() << "\n" RESET;
-	// 	}
-	// }
+	{
+		try
+		{
+			Bureaucrat b("Juan", 155);
+			std::cout << b;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << RED << e.what() << "\n" RESET;
+		}
+		try
+		{
+			Bureaucrat b("Alberto", -155);
+			std::cout << b;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << RED << e.what() << "\n" RESET;
+		}
+		try
+		{
+			Bureaucrat b("Carlos", 150);
+			std::cout << b;
+			b.increment();
+			std::cout << b;
+			b.decrement();
+			std::cout << b;
+			b.decrement();
+			std::cout << b;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << RED << e.what() << "\n" RESET;
+		}
+		try
+		{
+			Bureaucrat b("David", 1);
+			std::cout << b;
+			b.decrement();
+			std::cout << b;
+			b.increment();
+			std::cout << b;
+			b.increment();
+			std::cout << b;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << RED << e.what() << "\n" RESET;
+		}
+	}
 
 	try {
-		std::cout << YELLOW "-----------------------------------Shrubbery tests-----------------------------------" RESET;
+		std::cout << YELLOW "-----------------------------------Shrubbery tests-----------------------------------\n" RESET;
 		ShrubberyCreationForm s1("Shrubbery", 50, 100);
 		Bureaucrat b1("Eve", 75);
 		std::cout << s1;
@@ -77,7 +78,7 @@ int main()
 	}
 
 	try {
-		std::cout << YELLOW "-----------------------------------Robotomy tests-----------------------------------" RESET;
+		std::cout << YELLOW "-----------------------------------Robotomy tests-----------------------------------\n" RESET;
 		RobotomyRequestForm r1("Robotomy", 40, 40);
 		Bureaucrat b1("Eve", 1);
 		std::cout << r1;
@@ -99,7 +100,7 @@ int main()
 	}
 
 	try {
-		std::cout << YELLOW "-----------------------------------Presidential tests-----------------------------------" RESET;
+		std::cout << YELLOW "-----------------------------------Presidential tests-----------------------------------\n" RESET;
 		PresidentialPardonForm p1("Presidential", 1, 1);
 		Bureaucrat b1("Eve", 75);
 		std::cout << p1;
@@ -114,6 +115,22 @@ int main()
 		std::cout << p1;
 		b2.executeForm(p1);
 		std::cout << p1;
+	} catch (const std::exception& e) {
+		std::cerr << RED << e.what() << "\n" RESET;
+	}
+
+	try {
+		std::cout << YELLOW "-----------------------------------Intern tests-----------------------------------\n" RESET;
+		Intern someRandomIntern;
+		AForm *form;
+		form = someRandomIntern.makeForm("robotomy request", "Bender");
+		delete form;
+		form = someRandomIntern.makeForm("presidential pardon", "Alec");
+		delete form;
+		form = someRandomIntern.makeForm("shrubbery creation", "John");
+		delete form;
+		form = someRandomIntern.makeForm("non existing form", "John");
+
 	} catch (const std::exception& e) {
 		std::cerr << RED << e.what() << "\n" RESET;
 	}
