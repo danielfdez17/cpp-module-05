@@ -32,9 +32,9 @@ AForm::AForm(const std::string name, const unsigned short int signGrade, const u
 	std::cout << YELLOW << __func__ << " called with name " << name
 		<< ", sign grade " << signGrade << ", execute grade " << executeGrade << "\n" RESET;
 	if (signGrade < LOWEST_VALUE || executeGrade < LOWEST_VALUE)
-		throw GradeTooHighException("AForm grade is lower than the highest value\n");
+		throw Bureaucrat::GradeTooHighException("AForm grade is lower than the highest value\n");
 	if (signGrade > HIGHEST_VALUE || executeGrade > HIGHEST_VALUE)
-		throw GradeTooLowException("AForm grade is higher than the lowest value\n");
+		throw Bureaucrat::GradeTooLowException("AForm grade is higher than the lowest value\n");
 }
 
 std::string			AForm::getName() const { return name; }

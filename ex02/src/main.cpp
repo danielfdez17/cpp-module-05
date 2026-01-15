@@ -1,4 +1,4 @@
-#include "colors.hpp"
+#include "utils.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
@@ -57,7 +57,7 @@ int main()
 	// }
 
 	try {
-		std::cout << YELLOW "-----------------------------------Shrubbery tests-----------------------------------" RESET;
+		std::cout << YELLOW "-----------------------------------Shrubbery tests-----------------------------------\n" RESET;
 		ShrubberyCreationForm s1("Shrubbery", 50, 100);
 		Bureaucrat b1("Eve", 75);
 		std::cout << s1;
@@ -77,7 +77,7 @@ int main()
 	}
 
 	try {
-		std::cout << YELLOW "-----------------------------------Robotomy tests-----------------------------------" RESET;
+		std::cout << YELLOW "-----------------------------------Robotomy tests-----------------------------------\n" RESET;
 		RobotomyRequestForm r1("Robotomy", 40, 40);
 		Bureaucrat b1("Eve", 1);
 		std::cout << r1;
@@ -99,7 +99,7 @@ int main()
 	}
 
 	try {
-		std::cout << YELLOW "-----------------------------------Presidential tests-----------------------------------" RESET;
+		std::cout << YELLOW "-----------------------------------Presidential tests-----------------------------------\n" RESET;
 		PresidentialPardonForm p1("Presidential", 1, 1);
 		Bureaucrat b1("Eve", 75);
 		std::cout << p1;

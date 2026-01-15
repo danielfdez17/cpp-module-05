@@ -11,4 +11,7 @@
 #define CYAN "\033[36m"
 #define WHITE "\033[37m"
 
+const unsigned short int	HIGHEST_VALUE = 150;
+const unsigned short int	LOWEST_VALUE = 1;
+
 #endif // __COLORS__

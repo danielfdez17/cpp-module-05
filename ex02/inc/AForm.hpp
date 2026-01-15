@@ -3,9 +3,7 @@
 #define __AFORM__
 
 #include <string>
-#include "colors.hpp"
-#include "GradeTooHighException.hpp"
-#include "GradeTooLowException.hpp"
+#include "utils.hpp"
 #include "Bureaucrat.hpp"
 
 typedef class Bureaucrat Bureaucrat;
