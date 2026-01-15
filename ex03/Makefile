@@ -9,8 +9,8 @@ OK = $(GREEN)[OK]$(RESET)
 NAME = bureaucrat
 
 # * Compilation
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -g3 -fsanitize=address
+MYCPP = c++
+MYCPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g3 -fsanitize=address
 
 # * Removal
 RM = rm -rf
@@ -25,8 +25,6 @@ OBJ_DIR = ./obj/
 BUREAUCRAT_DIR = ./src/
 BUREAUCRAT_SRCS = 	Bureaucrat.cpp \
 					AForm.cpp \
-					GradeTooHighException.cpp \
-					GradeTooLowException.cpp \
 					ShrubberyCreationForm.cpp \
 					RobotomyRequestForm.cpp \
 					PresidentialPardonForm.cpp \
@@ -41,10 +39,10 @@ OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.cpp=.o))
 # ! RULES
 $(OBJ_DIR)%.o: $(BUREAUCRAT_DIR)%.cpp
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@$(MYCPP) $(MYCPPFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
+	@$(MYCPP) $(MYCPPFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
 	@echo "$(OK) $(GREEN)$(NAME)$(RESET)"
 
 all: obj $(NAME)
@@ -63,8 +61,9 @@ fclean: clean
 re: fclean all
 	@echo "$(OK) $(YELLOW)Rebuilt $(NAME)$(RESET)"
 
-run: all
+run: 
 	clear
+	@$(MAKE) re --no-print-directory
 	./$(NAME)
 
 .PHONY: all obj clean fclean re run

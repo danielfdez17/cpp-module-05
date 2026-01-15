@@ -33,15 +33,15 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string name, const uns
 	std::cout << YELLOW << __func__ << " called with name " << name
 		<< ", sign grade " << signGrade << ", execute grade " << executeGrade << "\n" RESET;
 	if (signGrade > REQUIRED_SIGN)
-		throw GradeTooLowException("PresidentialPardonForm sign grade is not high enough\n");
+		throw Bureaucrat::GradeTooLowException("PresidentialPardonForm sign grade is not high enough\n");
 	if (executeGrade > REQUIRED_EXEC)
-		throw GradeTooLowException("PresidentialPardonForm execution grade is not high enough\n");
+		throw Bureaucrat::GradeTooLowException("PresidentialPardonForm execution grade is not high enough\n");
 }
 
 void	PresidentialPardonForm::beSigned(Bureaucrat bureaucrat)
 {
 	if (bureaucrat.getGrade() > signGrade)
-		throw GradeTooLowException("Bureaucrat grade too low to sign the form\n");
+		throw Bureaucrat::GradeTooLowException("Bureaucrat grade too low to sign the form\n");
 	if (this->isSigned)
 		std::cout << YELLOW "PresidentialPardonForm '" << name << "' has already been signed!!!\n" RESET;
 	this->isSigned = true;
@@ -51,7 +51,7 @@ void	PresidentialPardonForm::beSigned(Bureaucrat bureaucrat)
 void	PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
 	if (executor.getGrade() > executeGrade)
-		throw GradeTooLowException("Bureaucrat grade too low to execute the form\n");
+		throw Bureaucrat::GradeTooLowException("Bureaucrat grade too low to execute the form\n");
 	std::cout << YELLOW << executor.getName() << " has been pardoned by Zaphod Beeblebrox\n" RESET;
 }
 

@@ -1,7 +1,7 @@
 #include "Bureaucrat.hpp"
-#include "GradeTooHighException.hpp"
-#include "GradeTooLowException.hpp"
-#include "colors.hpp"
+#include "utils.hpp"
+#include <string>
+#include <sstream>
 
 Bureaucrat::Bureaucrat() : name(__func__), grade(1)
 {
@@ -87,3 +87,49 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
 {
 	return os << CYAN << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".\n" RESET;
 }
+
+
+Bureaucrat::GradeTooHighException::GradeTooHighException(const char *msg) : message(msg) {}
+
+Bureaucrat::GradeTooHighException::GradeTooHighException(const int grade, const unsigned short int limit)
+{
+	std::stringstream ss1;
+	std::stringstream ss2;
+	ss1 << grade;
+	this->message = "Grade (";
+	this->message += ss1.str();
+	this->message += ") is higher than the lowest value (";
+	ss2 << limit;
+	this->message += ss2.str();
+	this->message += ")\n";
+}
+
+Bureaucrat::GradeTooHighException::~GradeTooHighException() throw() {}
+
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return this->message.c_str();
+}
+
+Bureaucrat::GradeTooLowException::GradeTooLowException(const char *msg) : message(msg) {}
+
+Bureaucrat::GradeTooLowException::GradeTooLowException(const int grade, const unsigned short int limit)
+{
+	std::stringstream ss1;
+	std::stringstream ss2;
+	ss1 << grade;
+	this->message = "Grade (";
+	this->message += ss1.str();;
+	this->message += ") is lower than the highest value (";
+	ss2 << limit;
+	this->message += ss2.str();
+	this->message += ")\n";
+}
+
+Bureaucrat::GradeTooLowException::~GradeTooLowException() throw() {}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return this->message.c_str();
+}
+
