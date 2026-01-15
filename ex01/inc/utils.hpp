@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __COLORS__
-#define __COLORS__
+#ifndef __UTILS__
+#define __UTILS__
 
 #define RESET "\033[0m"
 #define RED "\033[31m"
@@ -14,4 +14,4 @@
 const unsigned short int	HIGHEST_VALUE = 150;
 const unsigned short int	LOWEST_VALUE = 1;
 
-#endif // __COLORS__
+#endif // __UTILS__
