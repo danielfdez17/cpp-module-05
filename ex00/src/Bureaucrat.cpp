@@ -49,11 +49,13 @@ void	Bureaucrat::checkInRange(const int grade) const
 
 void	Bureaucrat::increment()
 {
+	std::cout << INFO "Incrementing bureaucrat " << this->name << " to grade " << this->grade - 1 << "...\n" RESET;
 	checkInRange(--this->grade);
 }
 
 void	Bureaucrat::decrement()
 {
+	std::cout << INFO "Decrementing bureaucrat " << this->name << " to grade " << this->grade + 1 << "...\n" RESET;
 	checkInRange(++this->grade);
 }
 
@@ -71,7 +73,7 @@ Bureaucrat::GradeTooHighException::GradeTooHighException(const int grade, const 
 	ss1 << grade;
 	this->message = "Grade (";
 	this->message += ss1.str();
-	this->message += ") is higher than the lowest value (";
+	this->message += ") is higher than the highest value (";
 	ss2 << limit;
 	this->message += ss2.str();
 	this->message += ")\n";
@@ -93,7 +95,7 @@ Bureaucrat::GradeTooLowException::GradeTooLowException(const int grade, const un
 	ss1 << grade;
 	this->message = "Grade (";
 	this->message += ss1.str();;
-	this->message += ") is lower than the highest value (";
+	this->message += ") is lower than the lowest value (";
 	ss2 << limit;
 	this->message += ss2.str();
 	this->message += ")\n";
