@@ -27,7 +27,7 @@ public:
 	unsigned short int	getSignGrade() const;
 	unsigned short int	getExecuteGrade() const;
 
-	void				beSigned(Bureaucrat bureaucrat);
+	void				beSigned(Bureaucrat const &bureaucrat);
 
 	class GradeTooHighException : public std::exception
 	{
