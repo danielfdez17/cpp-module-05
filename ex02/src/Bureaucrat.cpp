@@ -30,14 +30,14 @@ Bureaucrat::~Bureaucrat() {}
 
 Bureaucrat::Bureaucrat(const std::string name, const int grade) : name(name)
 {
-	std::cout << YELLOW << __func__ << " called with grade " << grade << "\n" RESET;
+	std::cout << INFO << __func__ << " called with grade " << grade << "\n" RESET;
 	checkInRange(grade);
 	this->grade = grade;
 }
 
-const std::string Bureaucrat::getName() const { return name; }
+const std::string Bureaucrat::getName() const { return this->name; }
 
-unsigned short int Bureaucrat::getGrade() const { return grade; }
+unsigned short int Bureaucrat::getGrade() const { return this->grade; }
 
 void	Bureaucrat::checkInRange(const int grade) const
 {
@@ -49,24 +49,27 @@ void	Bureaucrat::checkInRange(const int grade) const
 
 void	Bureaucrat::increment()
 {
-	checkInRange(--grade);
+	std::cout << INFO "Incrementing bureaucrat " << this->name << " to grade " << this->grade - 1 << "...\n" RESET;
+	checkInRange(--this->grade);
 }
 
 void	Bureaucrat::decrement()
 {
-	checkInRange(++grade);
+	std::cout << INFO "Decrementing bureaucrat " << this->name << " to grade " << this->grade + 1 << "...\n" RESET;
+	checkInRange(++this->grade);
 }
 
 void	Bureaucrat::signForm(AForm &form)
 {
+	std::cout << INFO << this->name << " attempts to sign form " << form.getName() << "...\n" RESET;
 	try
 	{
-		form .beSigned(*this);
-		std::cout << GREEN << name << " signed " << form.getName() << "\n" RESET;
+		form.beSigned(*this);
+		std::cout << OK << name << " signed " << form.getName() << "\n" RESET;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << RED << name << " couldn't sign " << form.getName() << " because " << e.what() << "\n" RESET;
+		std::cerr << ERROR << name << " couldn't sign " << form.getName() << " because " << e.what() << "\n" RESET;
 	}
 }
 
@@ -74,12 +77,12 @@ void	Bureaucrat::executeForm(AForm &form)
 {
 	try
 	{
-		form .execute(*this);
-		std::cout << GREEN << name << " executed " << form.getName() << "\n" RESET;
+		form.execute(*this);
+		std::cout << OK << name << " executed " << form.getName() << "\n" RESET;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << RED << name << " couldn't execute " << form.getName() << " because " << e.what() << "\n" RESET;
+		std::cerr << ERROR << name << " couldn't execute " << form.getName() << " because " << e.what() << "\n" RESET;
 	}
 }
 
@@ -89,10 +92,14 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
 }
 
 
-Bureaucrat::GradeTooHighException::GradeTooHighException(const char *msg) : message(msg) {}
+Bureaucrat::GradeTooHighException::GradeTooHighException(const char *msg) : message(msg)
+{
+	std::cout << INFO << "Bureaucrat::" << __func__ << " called\n" RESET;
+}
 
 Bureaucrat::GradeTooHighException::GradeTooHighException(const int grade, const unsigned short int limit)
 {
+	std::cout << INFO << "Bureaucrat::" << __func__ << " called with grade " << grade << " and limit " << limit << "\n" RESET;
 	std::stringstream ss1;
 	std::stringstream ss2;
 	ss1 << grade;
@@ -111,10 +118,14 @@ const char *Bureaucrat::GradeTooHighException::what() const throw()
 	return this->message.c_str();
 }
 
-Bureaucrat::GradeTooLowException::GradeTooLowException(const char *msg) : message(msg) {}
+Bureaucrat::GradeTooLowException::GradeTooLowException(const char *msg) : message(msg)
+{
+	std::cout << INFO << "Bureaucrat::" << __func__ << " called\n" RESET;
+}
 
 Bureaucrat::GradeTooLowException::GradeTooLowException(const int grade, const unsigned short int limit)
 {
+	std::cout << INFO << "Bureaucrat::" << __func__ << " called with grade " << grade << " and limit " << limit << "\n" RESET;
 	std::stringstream ss1;
 	std::stringstream ss2;
 	ss1 << grade;
