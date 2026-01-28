@@ -12,7 +12,7 @@ int main()
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << RED << e.what() << "\n" RESET;
+			std::cerr << ERROR << e.what() << "\n" RESET;
 		}
 		try
 		{
@@ -21,7 +21,7 @@ int main()
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << RED << e.what() << "\n" RESET;
+			std::cerr << ERROR << e.what() << "\n" RESET;
 		}
 		try
 		{
@@ -36,7 +36,7 @@ int main()
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << RED << e.what() << "\n" RESET;
+			std::cerr << ERROR << e.what() << "\n" RESET;
 		}
 		try
 		{
@@ -51,7 +51,7 @@ int main()
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << RED << e.what() << "\n" RESET;
+			std::cerr << ERROR << e.what() << "\n" RESET;
 		}
 	}
 

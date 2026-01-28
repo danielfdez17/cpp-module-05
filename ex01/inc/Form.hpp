@@ -28,6 +28,27 @@ public:
 	unsigned short int	getExecuteGrade() const;
 
 	void				beSigned(Bureaucrat bureaucrat);
+
+	class GradeTooHighException : public std::exception
+	{
+	private:
+		std::string message;
+	public:
+		GradeTooHighException(const char *msg);
+		GradeTooHighException(const int grade, const unsigned short int limit);
+		virtual ~GradeTooHighException() throw();
+		const char *what() const throw();
+	};
+	class GradeTooLowException : public std::exception
+	{
+	private:
+		std::string message;
+	public:
+		GradeTooLowException(const char *msg);
+		GradeTooLowException(const int grade, const unsigned short int limit);
+		virtual ~GradeTooLowException() throw();
+		const char *what() const throw();
+	};
 };
 
 std::ostream&	operator<<(std::ostream& os, const Form& form);
