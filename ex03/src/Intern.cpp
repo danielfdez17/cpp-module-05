@@ -5,7 +5,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "utils.hpp"
 
-const unsigned short int MAX_FORMS = 3;
+const unsigned short int	MAX_FORMS = 3;
 
 const std::string			ROBOTOMY_FORM = "robotomy request";
 const unsigned short int	ROBOTOMY_REQUIRED_SIGN = 72;
@@ -36,7 +36,7 @@ Intern	Intern::operator=(const Intern &copy)
 
 Intern::~Intern() {}
 
-AForm	*Intern::makeForm(std::string formName, std::string targetName)
+AForm	*Intern::makeForm(std::string const& formName, std::string const& targetName)
 {
 	AForm	*form = NULL;
 	int		index = -1;
@@ -66,9 +66,9 @@ AForm	*Intern::makeForm(std::string formName, std::string targetName)
 		form = new ShrubberyCreationForm(targetName, SHRUBBERY_REQUIRED_SIGN, SHRUBBERY_REQUIRED_EXEC);
 		break;
 	default:
-		std::cout << RED "'" << formName << "' does not exist!!!\n" RESET;
+		std::cout << ERROR "'" << formName << "' is not a valid form!!!\n" RESET;
 		return NULL;
 	}
-	std::cout << GREEN "Intern creates " << *form << RESET;
+	std::cout << OK "Intern creates " << *form << RESET;
 	return form;
 }

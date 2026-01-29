@@ -12,7 +12,7 @@ public:
 	Intern operator=(const Intern &copy);
 	~Intern();
 
-	AForm *makeForm(std::string formName, std::string targetName);
+	AForm *makeForm(std::string const& formName, std::string const& targetName);
 };
 
 #endif // __INTERN_HPP__
