@@ -1,16 +1,17 @@
 #include "ShrubberyCreationForm.hpp"
-
 #include <fstream>
 
 const unsigned short int REQUIRED_SIGN = 145;
 const unsigned short int REQUIRED_EXEC = 137;
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm(), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm(), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)//, type(__func__)
 {
+	this->type = __func__;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm&copy) : AForm(copy), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm&copy) : AForm(copy), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)//, type(__func__)
 {
+	this->type = __func__;
 	if (this != &copy)
 	{
 		isSigned = copy.isSigned;
@@ -34,28 +35,26 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string name, const unsig
 {
 	std::cout << YELLOW << __func__ << " called with name " << name
 		<< ", sign grade " << signGrade << ", execute grade " << executeGrade << "\n" RESET;
-	if (signGrade > REQUIRED_SIGN)
-		throw Bureaucrat::GradeTooLowException("ShrubberyCreationForm sign grade is not high enough\n");
-	if (executeGrade > REQUIRED_EXEC)
-		throw Bureaucrat::GradeTooLowException("ShrubberyCreationForm execution grade is not high enough\n");
+	if (signGrade > this->signGrade)
+		throw AForm::GradeTooLowException("ShrubberyCreationForm sign grade is not high enough\n");
+	if (executeGrade > this->executeGrade)
+		throw AForm::GradeTooLowException("ShrubberyCreationForm execution grade is not high enough\n");
 }
 
-void	ShrubberyCreationForm::beSigned(Bureaucrat bureaucrat)
-{
-	if (bureaucrat.getGrade() > signGrade)
-		throw Bureaucrat::GradeTooLowException("Bureaucrat grade too low to sign the form\n");
-	if (this->isSigned)
-		std::cout << YELLOW "ShrubberyCreationForm '" << name << "' has already been signed!!!\n" RESET;
-	this->isSigned = true;
-	std::cout << GREEN "ShrubberyCreationForm '" << name << "' has been signed successfully\n" RESET;
-}
+// void	ShrubberyCreationForm::beSigned(Bureaucrat bureaucrat)
+// {
+// 	if (bureaucrat.getGrade() > signGrade)
+// 		throw AForm::GradeTooLowException("Bureaucrat grade too low to sign the form\n");
+// 	if (this->isSigned)
+// 		std::cout << YELLOW "ShrubberyCreationForm '" << name << "' has already been signed!!!\n" RESET;
+// 	this->isSigned = true;
+// 	std::cout << GREEN "ShrubberyCreationForm '" << name << "' has been signed successfully\n" RESET;
+// }
 
 void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-	std::cout << RED "Unimplemented method\n" RESET;
-	(void)executor;
-	if (executeGrade > REQUIRED_EXEC)
-		throw Bureaucrat::GradeTooLowException("ShrubberyCreationForm execution grade is not high enough\n");
+	if (executor.getGrade() > this->executeGrade)
+		throw AForm::GradeTooLowException("ShrubberyCreationForm execution grade is not high enough\n");
 	std::fstream outfile;
 	std::string content =
 	"      *             ,\n"
