@@ -19,7 +19,7 @@ public:
 	virtual ~ShrubberyCreationForm();
 
 	ShrubberyCreationForm(const std::string name, const unsigned short int signGrade, const unsigned short int executeGrade);
-	void		beSigned(Bureaucrat bureaucrat);
+	// void		beSigned(Bureaucrat bureaucrat);
 	void		execute(Bureaucrat const & executor) const;
 };
 

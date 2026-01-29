@@ -3,12 +3,14 @@
 const unsigned short int REQUIRED_SIGN = 25;
 const unsigned short int REQUIRED_EXEC = 5;
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm(), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
+PresidentialPardonForm::PresidentialPardonForm() : AForm(), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)//, type(__func__)
 {
+	this->type = __func__;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm&copy) : AForm(copy), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm&copy) : AForm(copy), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)//, type(__func__)
 {
+	this->type = __func__;
 	if (this != &copy)
 	{
 		isSigned = copy.isSigned;
@@ -32,26 +34,26 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string name, const uns
 {
 	std::cout << YELLOW << __func__ << " called with name " << name
 		<< ", sign grade " << signGrade << ", execute grade " << executeGrade << "\n" RESET;
-	if (signGrade > REQUIRED_SIGN)
-		throw Bureaucrat::GradeTooLowException("PresidentialPardonForm sign grade is not high enough\n");
-	if (executeGrade > REQUIRED_EXEC)
-		throw Bureaucrat::GradeTooLowException("PresidentialPardonForm execution grade is not high enough\n");
+	if (signGrade > this->signGrade)
+		throw AForm::GradeTooLowException("PresidentialPardonForm sign grade is not high enough\n");
+	if (executeGrade > this->executeGrade)
+		throw AForm::GradeTooLowException("PresidentialPardonForm execution grade is not high enough\n");
 }
 
-void	PresidentialPardonForm::beSigned(Bureaucrat bureaucrat)
-{
-	if (bureaucrat.getGrade() > signGrade)
-		throw Bureaucrat::GradeTooLowException("Bureaucrat grade too low to sign the form\n");
-	if (this->isSigned)
-		std::cout << YELLOW "PresidentialPardonForm '" << name << "' has already been signed!!!\n" RESET;
-	this->isSigned = true;
-	std::cout << GREEN "PresidentialPardonForm '" << name << "' has been signed successfully\n" RESET;
-}
+// void	PresidentialPardonForm::beSigned(Bureaucrat bureaucrat)
+// {
+// 	if (bureaucrat.getGrade() > this->signGrade)
+// 		throw AForm::GradeTooLowException("Bureaucrat grade too low to sign the form\n");
+// 	if (this->isSigned)
+// 		std::cout << YELLOW "PresidentialPardonForm '" << name << "' has already been signed!!!\n" RESET;
+// 	this->isSigned = true;
+// 	std::cout << GREEN "PresidentialPardonForm '" << name << "' has been signed successfully\n" RESET;
+// }
 
 void	PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
-	if (executor.getGrade() > executeGrade)
-		throw Bureaucrat::GradeTooLowException("Bureaucrat grade too low to execute the form\n");
+	if (executor.getGrade() > this->executeGrade)
+		throw AForm::GradeTooLowException("Bureaucrat grade too low to execute the form\n");
 	std::cout << YELLOW << executor.getName() << " has been pardoned by Zaphod Beeblebrox\n" RESET;
 }
 

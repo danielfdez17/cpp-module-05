@@ -4,12 +4,14 @@
 const unsigned short int REQUIRED_SIGN = 72;
 const unsigned short int REQUIRED_EXEC = 45;
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm(), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
+RobotomyRequestForm::RobotomyRequestForm() : AForm(), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)//, type(__func__)
 {
+	this->type = __func__;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm&copy) : AForm(copy), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm&copy) : AForm(copy), isSigned(false), signGrade(REQUIRED_SIGN), executeGrade(REQUIRED_EXEC)//, type(__func__)
 {
+	this->type = __func__;
 	if (this != &copy)
 	{
 		isSigned = copy.isSigned;
@@ -33,26 +35,26 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string name, const unsigned 
 {
 	std::cout << YELLOW << __func__ << " called with name " << name
 		<< ", sign grade " << signGrade << ", execute grade " << executeGrade << "\n" RESET;
-	if (signGrade > REQUIRED_SIGN)
-		throw Bureaucrat::GradeTooLowException("RobotomyRequestForm sign grade is not high enough\n");
-	if (executeGrade > REQUIRED_EXEC)
-		throw Bureaucrat::GradeTooLowException("RobotomyRequestForm execution grade is not high enough\n");
+	if (signGrade > this->signGrade)
+		throw AForm::GradeTooLowException("RobotomyRequestForm sign grade is not high enough\n");
+	if (executeGrade > this->executeGrade)
+		throw AForm::GradeTooLowException("RobotomyRequestForm execution grade is not high enough\n");
 }
 
-void	RobotomyRequestForm::beSigned(Bureaucrat bureaucrat)
-{
-	if (bureaucrat.getGrade() > signGrade)
-		throw Bureaucrat::GradeTooLowException("Bureaucrat grade too low to sign the form\n");
-	if (this->isSigned)
-		std::cout << YELLOW "RobotomyRequestForm '" << name << "' has already been signed!!!\n" RESET;
-	this->isSigned = true;
-	std::cout << GREEN "RobotomyRequestForm '" << name << "' has been signed successfully\n" RESET;
-}
+// void	RobotomyRequestForm::beSigned(Bureaucrat bureaucrat)
+// {
+// 	if (bureaucrat.getGrade() > signGrade)
+// 		throw AForm::GradeTooLowException("Bureaucrat grade too low to sign the form\n");
+// 	if (this->isSigned)
+// 		std::cout << YELLOW "RobotomyRequestForm '" << name << "' has already been signed!!!\n" RESET;
+// 	this->isSigned = true;
+// 	std::cout << GREEN "RobotomyRequestForm '" << name << "' has been signed successfully\n" RESET;
+// }
 
 void	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
-	if (executeGrade > REQUIRED_EXEC)
-		throw Bureaucrat::GradeTooLowException("RobotomyRequestForm execution grade is not high enough\n");
+	if (executor.getGrade() > this->executeGrade)
+		throw AForm::GradeTooLowException("RobotomyRequestForm execution grade is not high enough\n");
 	(void)executor;
 	std::cout << YELLOW "Making some drilling noises...\n" RESET;
 	if (std::rand() % 2 == 0)
